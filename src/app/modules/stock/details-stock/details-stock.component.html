@@ -1,0 +1,48 @@
+<div>
+    <button style="margin-right: 15px;" (click)="retour()"> <i class="fas fa-long-arrow-alt-left"></i> </button>
+  </div>
+<div class="container mt-5">
+    <div class="row" *ngIf="isLoading == true">
+        <div class="col-12 text-center">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            <p>chargement...</p>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="isLoading == false" id="contentToConvert">
+        <div class="col-md-4  ">
+            <p class="card-text">
+                <mdb-carousel
+                  class="carousel slide carousel-fade"
+                  [animation]="'fade'"
+                >
+                  <mdb-carousel-item *ngFor="let image of stock.imgs">
+                    <img src="{{ image.imageStock }}" class="d-block w-100 h-150" />
+                  </mdb-carousel-item>
+                </mdb-carousel>
+              </p>
+       </div>
+        <div class="col-md-8  ">
+          <h1>Stock numero :{{stock.idStock}} </h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Libelle</th>
+                        <th scope="col">Quantité existante</th>
+                        <th scope="col">Quantité minimum </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr >
+                        <td >{{stock.libelleStock}}</td>
+                        <td>{{stock.qteStock}}</td>
+                        <td>{{stock.qteMin }}</td>
+                      </tr>
+                </tbody>
+              </table>
+            
+        </div>
+    </div>
+</div>

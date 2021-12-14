@@ -1,0 +1,43 @@
+<h2>
+  Liste des factures
+</h2>
+<button class="btn btn-outline-primary btnAjout" (click)="addInvoice()">
+  Ajouter facture
+</button>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">idFacture</th>
+      <th scope="col">montantFacture</th>
+      <th scope="col">montantRemise</th>
+      <th scope="col">dateFacture</th>
+      <th scope="col">active</th>
+      <th scope="col">actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let li of ListInvoice; let i = index">
+      <th scope="row">{{ li.idInvoice }}</th>
+      <td>{{ li.billAmount }}</td>
+      <td>{{ li.discountAmount }}</td>
+      <td>{{ li.dateBill }}</td>
+      <td>{{ li.Status }}</td>
+
+      <td>
+        <button class="btn btn-primary">
+          <i
+            class="bi bi-arrow-clockwise"
+            (click)="UpdateInvoice(li.idInvoice)"
+          ></i>
+        </button>
+
+        <button class="btn btn-primary" (click)="Delete(li.idInvoice)">
+          <i class="bi bi-trash-fill" aria-hidden="true"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+

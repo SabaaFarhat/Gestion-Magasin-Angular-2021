@@ -1,0 +1,76 @@
+<div class="col-sm-6">
+  <h2>Liste du stock</h2>
+  
+</div>
+<button class="btn btn-md btn-outline-primary" style="float: right;"  (click)="open(content)">
+  <i class="fa fa-user"></i>Nouveau Stock
+</button>
+
+<input  [(ngModel)]="searchValue" id="search" class="form-control form-control-navbar search" type="search" placeholder="Recherche" aria-label="Search"[ngModelOptions]="{standalone: true}">
+<div class="col-sm-12 row">
+  <div class="col-md-4" *ngFor="let stock of ListStock | searchfilter:searchValue | paginate: { itemsPerPage: 3, currentPage: p }">
+    <div class="huver">
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header">
+          <strong> {{ stock.libelleStock }} </strong>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            <mdb-carousel
+              class="carousel slide carousel-fade"
+              [animation]="'fade'"
+            >
+              <mdb-carousel-item *ngFor="let image of stock.imgs">
+                <img src="{{ image.imageStock }}" class="d-block w-100 h-150" />
+              </mdb-carousel-item>
+            </mdb-carousel>
+          </p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+            <button
+              class="btn btn-sm btn-warning"
+              (click)="UpdateStock(stock.idStock)">
+              <i class="fa fa-edit"></i>Modifier
+            </button>
+
+            <button class="btn btn-sm btn-info" (click)="DetailStock(stock.idStock)">
+              <i class="fa fa-search"></i>Details
+            </button>
+            <button
+              class="btn btn-sm btn-danger"
+              (click)="Delete(stock.idStock)">
+              <i class="fa fa-remove"></i>Delete
+            </button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Un nouveau stock</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-add-stock
+        [stocks]="stockAdd"
+        (notif)="addRequest($event)"></app-add-stock>
+    </div>
+  </ng-template>
+
+  <div *ngIf="isShown" class="row container-fluid" id="divshow">
+    <app-update-stock [stocksU]="stockUpdate"></app-update-stock>
+  </div>
+</div>
+
+
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

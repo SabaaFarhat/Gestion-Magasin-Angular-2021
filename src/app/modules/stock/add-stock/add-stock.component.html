@@ -1,0 +1,35 @@
+ <form [formGroup]="stockForm" (ngSubmit)="SaveStock(stockForm.value)">
+    <div class="mb-3">
+      <label for="" class="form-label">Qantité stock</label>
+      <input formControlName="qteStock" type="number" class="form-control"/>
+      <div *ngIf="qteStock?.invalid && qteStock?.touched">
+        <div *ngIf="qteStock?.errors?.required" class="alert alert-danger">
+          Qantité stock obligatoire
+        </div>
+      </div>
+  
+      <label for="" class="form-label">Quantité minimum du stock</label>
+      <input formControlName="qteMin" type="number" class="form-control" />
+      <div *ngIf="qteMin?.invalid && qteStock?.touched">
+        <div *ngIf="qteMin?.errors?.required" class="alert alert-danger">
+          Quantité minimum du stock obligatoire
+        </div>
+      </div>
+  
+      <label for="" class="form-label">Libelle stock</label>
+      <input formControlName="libelleStock" type="text" class="form-control" />
+      <div *ngIf="libelleStock?.invalid && libelleStock?.touched">
+        <div *ngIf="libelleStock?.errors?.required" class="alert alert-danger">
+          Libelle stock obligatoire
+        </div>
+        <div *ngIf="libelleStock?.errors?.minlength" class="">
+          Libelle stock doit contenir 3 caractères
+        </div>
+      </div>
+    </div>    
+    <div  class= "border text-center" > 
+      <button  data-dismiss= "modal"  class= "btn btn-info" > Soumettre </button> 
+      </div>
+    </form>
+
+  

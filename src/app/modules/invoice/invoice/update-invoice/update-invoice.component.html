@@ -1,0 +1,58 @@
+<form #modelF="ngForm">
+  <label>Id Facture </label>
+  <input
+    type="number"
+    class="form-control"
+    name="idFacture"
+    [(ngModel)]="invoice.idInvoice"
+    #idFacture="ngModel"
+    disabled
+  />
+
+  <label>montantFacture</label>
+  <input
+    type="number"
+    class="form-control"
+    [(ngModel)]="invoice.billAmount"
+    #montantFacture="ngModel"
+    name="montantFacture"
+  />
+
+  <label>montantRemise</label>
+  <input
+    type="number"
+    class="form-control"
+    name="montantRemise"
+    [(ngModel)]="invoice.discountAmount"
+    #montantRemise="ngModel"
+  />
+
+  <label>Date Facture</label>
+  <input
+    type="text"
+    class="form-control"
+    name="dateFacture"
+    [(ngModel)]="invoice.dateBill"
+    #dateFacture="ngModel"
+  />
+
+  <label>active</label>
+  <select
+    class="form-select"
+    aria-label="Default select example"
+    name="active"
+    [(ngModel)]="invoice.Status"
+    #active="ngModel"
+  >
+    <option value="">--Please choose an option--</option>
+    <option value="true">true</option>
+    <option value="false">false</option>
+  </select>
+
+  <input
+    type="submit"
+    class="btn btn-primary"
+    value="Update"
+    (click)="UpdateInvoice(modelF.value)"
+  />
+</form>

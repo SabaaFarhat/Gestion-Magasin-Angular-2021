@@ -1,0 +1,44 @@
+<form #modelF="ngForm" (ngSubmit)="UpdateStock(modelF.value)">
+  <label>Id stock </label>
+  <input type="number" class="form-control" name="idStock" [(ngModel)]="stock.idStock" #idStock="ngModel" disabled/>
+
+  <label>Quantité stock</label>
+  <input type="number" class="form-control" [(ngModel)]="stock.qteStock" #qteStock="ngModel" name="qteStock" required/>
+  <div *ngIf="qteStock?.invalid && qteStock?.touched">
+    <div *ngIf="qteStock?.errors?.required" class="alert alert-danger">
+      Quantité stock stock obligatoire
+    </div>
+  </div>
+
+  <label>Quantité minimum</label>
+  <input type="number" class="form-control" name="qteMin" [(ngModel)]="stock.qteMin" #qteMin="ngModel" required/>
+  <div *ngIf="qteMin?.invalid && qteMin?.touched">
+    <div *ngIf="qteMin?.errors?.required" class="alert alert-danger">
+      Quantité stock stock obligatoire
+    </div>
+  </div>
+
+
+  <label>Libelle </label>
+  <input type="text" class="form-control" name="libelleStock" [(ngModel)]="stock.libelleStock" required minlength="3" #libelleStock="ngModel"
+  />
+  <div *ngIf="libelleStock?.invalid && libelleStock?.touched">
+    <div *ngIf="libelleStock?.errors?.required" class="alert alert-danger">
+      Libelle stock obligatoire
+    </div>
+    <div *ngIf="libelleStock?.errors?.minlength" class="">
+      Libelle stock doit contenir 3 caractères
+    </div>
+  </div>
+
+  
+  <div class="form-group">
+    <input type="file" id="selectFile" name="selectFile" (change)="addFile($event)" />
+  </div>
+
+
+  <button type="submit" class="btn btn-primary">Annuler</button>
+  <div class="border text-center">
+    <button data-dismiss="modal" class="btn btn-info">Save Changes</button>
+  </div>
+</form>

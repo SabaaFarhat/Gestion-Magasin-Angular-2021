@@ -1,0 +1,42 @@
+<form [formGroup]="InvoiceForm" (ngSubmit)="SaveInvoice(InvoiceForm.value)">
+  <div class="mb-3">
+    <label for="" class="form-label">montant Facture</label>
+    <input
+      formControlName="billAmount"
+      type="number"
+      class="form-control"
+      id="billAmount"
+    />
+
+    <label for="" class="form-label">montant Remise</label>
+    <input
+      formControlName="discountAmount"
+      type="number"
+      class="form-control"
+      id="discountAmount"
+    />
+
+    <label for="" class="form-label">date Facture</label>
+    <input
+      formControlName="dateBill"
+      type="text"
+      class="form-control"
+      id="dateBill"
+    />
+
+    <br />
+    <select
+      formControlName="Status"
+      class="form-select"
+      aria-label="Default select example"
+      name="Status"
+      id="Status"
+    >
+      <option value="">--Please choose an option--</option>
+      <option value="true">true</option>
+      <option value="false">false</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
